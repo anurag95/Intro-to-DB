@@ -2,10 +2,17 @@
 
 require 'config_sql.php';
 
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 $msg = "Successfully placed the order. The following items are getting low in supply - ";
 $flag = 0;
-$retailid = $_POST['retailid'];
-$number = $_POST['number'];
+$retailid = test_input($_POST['retailid']);
+$number = test_input($_POST['number']);
 
 //echo "Retailid = ".$retailid;
 //echo "Number = ".$number;
