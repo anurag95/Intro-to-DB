@@ -3,8 +3,15 @@
 $flag = 0;
 require 'config_sql.php';
 
-$username=$_POST['name'];
-$password=$_POST['password'];
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+$username=test_input($_POST['name']);
+$password=test_input($_POST['password']);
 
 session_start();
 if(isset($_SESSION['views'])) 
