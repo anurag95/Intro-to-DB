@@ -2,15 +2,23 @@
 
 require 'config_sql.php';
 
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+
 $string = "";
 $dalalid = 0;
 $retailid = 0;
 
-$shopname = $_POST['shopname'];
-$contactname = $_POST['contactname'];
-$number = $_POST['number'];
-$address = $_POST['address'];
-$dalal = $_POST['dalal'];
+$shopname = test_input($_POST['shopname']);
+$contactname = test_input($_POST['contactname']);
+$number = test_input($_POST['number']);
+$address = test_input($_POST['address']);
+$dalal = test_input($_POST['dalal']);
 
 $stat = $mysqli->query("INSERT INTO Retailers VALUES ('', '$shopname', '$address', '$contactname', '$number', '0', '0')");
 $stat = $mysqli->query("SELECT * FROM Retailers WHERE Contact LIKE '$number' LIMIT 1");
