@@ -1,11 +1,17 @@
 <?php
 
 require 'config_sql.php';
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
 
-$name = $_POST['name'];
-$salary = $_POST['salary'];
-$number = $_POST['number'];
-$address = $_POST['address'];
+$name = test_input($_POST['name']);
+$salary = test_input($_POST['salary']);
+$number = test_input($_POST['number'];
+$address = test_input($_POST['address'];
 $pass = 'iiit123';
 $stat = $mysqli->query("INSERT INTO Employee_Details VALUES ('', '$name',  '$number', '$salary', '$address', '$pass')");
 
